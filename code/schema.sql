@@ -1,4 +1,5 @@
-CREATE TABLE test(
-    a VARCHAR(15),
-    b INT
-);
+-- Project Schema
+
+DROP SCHEMA IF EXISTS basketball;
+CREATE SCHEMA basketball;
+
