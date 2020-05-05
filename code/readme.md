@@ -1,5 +1,5 @@
 # Application overview
-###Members
+### Members
 - Yaoyu Cheng
 - Ruilin Jin
 - Zhou Lu
