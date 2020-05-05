@@ -3,13 +3,18 @@
 DROP SCHEMA IF EXISTS basketball;
 CREATE SCHEMA basketball;
 
+DROP TABLE IF EXISTS ncaa_players;
+DROP TABLE IF EXISTS ncaa_stats;
+DROP TABLE IF EXISTS nba_players;
+DROP TABLE IF EXISTS nba_stats;
+
 CREATE TABLE ncaa_players(
-	player_id 	INTEGER PRIMARY KEY,
-	player_name VARCHAR(255),
-	school_name VARCHAR(255),
-	class_year 	VARCHAR(40),
-	height 		VARCHAR(40),
-	position 	VARCHAR(40)
+	player_id 		INTEGER PRIMARY KEY,
+	player_name 	VARCHAR(255),
+	school_name 	VARCHAR(255),
+	class_year 		VARCHAR(40),
+	height 			VARCHAR(40),
+	position 		VARCHAR(40)
 );
 
 CREATE TABLE ncaa_stats(
@@ -38,11 +43,11 @@ CREATE TABLE ncaa_stats(
 );
 
 CREATE TABLE nba_players(
-	player_name VARCHAR(255),
-	position	VARCHAR(40),
-	height		VARCHAR(40),
-	birthdate	VARCHAR(255),
-	college		VARCHAR(255),
+	player_name 	VARCHAR(255),
+	position		VARCHAR(40),
+	height			VARCHAR(40),
+	birthdate		VARCHAR(255),
+	college			VARCHAR(255),
 	PRIMARY KEY(player_name, birthdate)
 );
 
