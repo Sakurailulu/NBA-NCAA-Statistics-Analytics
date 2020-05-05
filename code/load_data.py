@@ -32,7 +32,7 @@ def main():
     	for row in reader:
     		cursor.execute(
     			player_query,
-    			dict( player_id=row[4], year=2008, player_name=row[3], school_name=row[0], class_year=row[], height=row[8], position=row[7] )
+    			dict( player_id=row[4], year=2008, player_name=row[3], school_name=row[0], class_year=row[5], height=row[8], position=row[7] )
     		)
 
     		cursor.execute(
@@ -50,7 +50,7 @@ def main():
     	for row in reader:
     		cursor.execute(
     			player_query,
-    			dict( player_id=row[4], year=2009, player_name=row[3], school_name=row[0], class_year=row[], height=row[8], position=row[7] )
+    			dict( player_id=row[4], year=2009, player_name=row[3], school_name=row[0], class_year=row[5], height=row[8], position=row[7] )
     		)
 
     		cursor.execute(
@@ -68,7 +68,7 @@ def main():
     	for row in reader:
     		cursor.execute(
     			player_query,
-    			dict( player_id=row[4], year=2010, player_name=row[3], school_name=row[0], class_year=row[], height=row[8], position=row[7] )
+    			dict( player_id=row[4], year=2010, player_name=row[3], school_name=row[0], class_year=row[5], height=row[8], position=row[7] )
     		)
 
     		cursor.execute(
