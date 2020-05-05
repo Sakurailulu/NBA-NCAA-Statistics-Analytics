@@ -2,16 +2,18 @@ import psycopg2
 import psycopg2.extras
 import csv
 
-connection_string = "host='localhost' dbname='dbms_final_project' user='dbms_project_user' password='dbms_password'"
-conn = psycopg2.connect(connection_string, cursor_factory=psycopg2.extras.DictCursor)
-cursor = conn.cursor()
+
 
 
 def main():
     # Creating schema
     print("Creating schema...")
+    cursor.execute(open("db-setup.sql", "r").read())
     cursor.execute(open("schema.sql", "r").read())
 
+    connection_string = "host='localhost' dbname='dbms_final_project' user='dbms_project_user' password='dbms_password'"
+	conn = psycopg2.connect(connection_string, cursor_factory=psycopg2.extras.DictCursor)
+	cursor = conn.cursor()
 
     print("Loading data")
     
@@ -32,7 +34,7 @@ def main():
     	for row in reader:
     		cursor.execute(
     			player_query,
-    			dict( player_id=row[4], year=2008, player_name=row[3], school_name=row[0], class_year=row[], height=row[8], position=row[7] )
+    			dict( player_id=row[4], year=2008, player_name=row[3], school_name=row[0], class_year=row[5], height=row[8], position=row[7] )
     		)
 
     		cursor.execute(
@@ -50,7 +52,7 @@ def main():
     	for row in reader:
     		cursor.execute(
     			player_query,
-    			dict( player_id=row[4], year=2009, player_name=row[3], school_name=row[0], class_year=row[], height=row[8], position=row[7] )
+    			dict( player_id=row[4], year=2009, player_name=row[3], school_name=row[0], class_year=row[5], height=row[8], position=row[7] )
     		)
 
     		cursor.execute(
@@ -68,7 +70,7 @@ def main():
     	for row in reader:
     		cursor.execute(
     			player_query,
-    			dict( player_id=row[4], year=2010, player_name=row[3], school_name=row[0], class_year=row[], height=row[8], position=row[7] )
+    			dict( player_id=row[4], year=2010, player_name=row[3], school_name=row[0], class_year=row[5], height=row[8], position=row[7] )
     		)
 
     		cursor.execute(
