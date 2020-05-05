@@ -9,9 +9,30 @@
 
 ## Available functionality
 - [ ] NCAA Player lookup
+      -> enter in NBA or not
+		-> in
+			-> stat
+		-> not in
+			-> stat
 - [ ] NBA Player lookup
+      -> was in NCAA or not
+		-> in 
+			->stat
+		-> not in
+			-> stat
 - [ ] Annual NCAA statistics review
+        > Average height and height range
+	> Best school
+	> Worst school
+	> Top 10 players with highest # of fg, three pointers, free throws, rebound, assists, etc
+	> Top 10 players with highest % of ^^
+
 - [ ] Annual NBA statistics review
+        > Average height and height range
+	> Best Team
+	> Worst Team
+	> Top 10 players with highest # of fg, three pointers, free throws, rebound, assists, etc
+	> Top 10 players with highest % of ^^
 
 
 ## Setting up the application
