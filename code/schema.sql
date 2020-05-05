@@ -9,12 +9,14 @@ DROP TABLE IF EXISTS nba_players;
 DROP TABLE IF EXISTS nba_stats;
 
 CREATE TABLE ncaa_players(
-	player_id 		INTEGER PRIMARY KEY,
+	player_id 		INTEGER,
+	year 			INTEGER,
 	player_name 	VARCHAR(255),
 	school_name 	VARCHAR(255),
 	class_year 		VARCHAR(40),
 	height 			VARCHAR(40),
-	position 		VARCHAR(40)
+	position 		VARCHAR(40),
+	PRIMARY KEY(player_id, year)
 );
 
 CREATE TABLE ncaa_stats(
