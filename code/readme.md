@@ -2,7 +2,7 @@
 ### Members
 - Yaoyu Cheng
 - Ruilin Jin
-- Zhou Lu
+- Winnie Lu
 - Yiran Zheng
 - Michelle Zhou
  
