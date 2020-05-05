@@ -62,8 +62,6 @@ CREATE TABLE nba_stats(
 	games_played					INTEGER,
 	minutes_player					INTEGER,
 	ture_shoot						FLOAT,
-	three_points_percentage			FLOAT,
-	free_throw_rate					FLOAT,
 	offensive_rebound_percentage	FLOAT,
 	defensive_rebound_percentage	FLOAT,
 	total_rebound_percentage		FLOAT,

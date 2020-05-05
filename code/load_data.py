@@ -2,21 +2,17 @@ import psycopg2
 import psycopg2.extras
 import csv
 
-
-
+connection_string = "host='localhost' dbname='dbms_final_project' user='dbms_project_user' password='dbms_password'"
+conn = psycopg2.connect(connection_string,cursor_factory=psycopg2.extras.DictCursor)
+cursor = conn.cursor()
 
 def main():
     # Creating schema
     print("Creating schema...")
-    cursor.execute(open("db-setup.sql", "r").read())
-    cursor.execute(open("schema.sql", "r").read())
+    cursor.execute(open("code/schema.sql", "r").read())
 
-    connection_string = "host='localhost' dbname='dbms_final_project' user='dbms_project_user' password='dbms_password'"
-	conn = psycopg2.connect(connection_string, cursor_factory=psycopg2.extras.DictCursor)
-	cursor = conn.cursor()
 
     print("Loading data")
-    
     print("Inserting data into ncaa_players, ncaa_stats")
     player_query = "INSERT INTO ncaa_players(player_id, year, player_name, school_name, class_year, height, position)"\
     		"VALUES (%(player_id)s, %(year)s, %(player_name)s, %(school_name)s, %(class_year)s, %(height)s, %(position)s) ON CONFLICT DO NOTHING"
@@ -29,8 +25,8 @@ def main():
     			  			%(turnovers)s ) ON CONFLICT DO NOTHING"
 
     # Insert 2008 data into ncaa_players table
-    with open('datasets/ncaa_players_2008') as ncaa_2008:
-    	reader = csv.reader(ncaa_2008, delimeter=',')
+    with open('code/datasets/ncaa_players_2008.csv') as ncaa_2008:
+    	reader = csv.reader(ncaa_2008, delimiter=',')
     	for row in reader:
     		cursor.execute(
     			player_query,
@@ -47,8 +43,8 @@ def main():
     print("Added data for 2008...")
 
     # Insert 2009 data into ncaa_players table
-    with open('datasets/ncaa_players_2009') as ncaa_2009:
-    	reader = csv.reader(ncaa_2009, delimeter=',')
+    with open('code/datasets/ncaa_players_2009.csv') as ncaa_2009:
+    	reader = csv.reader(ncaa_2009, delimiter=',')
     	for row in reader:
     		cursor.execute(
     			player_query,
@@ -65,8 +61,8 @@ def main():
     print("Added data for 2009...")
 
     # Insert 2010 data into ncaa_players table
-    with open('datasets/ncaa_players_2010') as ncaa_2010:
-    	reader = csv.reader(ncaa_2010, delimeter=',')
+    with open('code/datasets/ncaa_players_2010.csv') as ncaa_2010:
+    	reader = csv.reader(ncaa_2010, delimiter=',')
     	for row in reader:
     		cursor.execute(
     			player_query,
