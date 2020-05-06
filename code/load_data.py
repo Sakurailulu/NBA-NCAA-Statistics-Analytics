@@ -99,7 +99,7 @@ def processNBA(infile, query, option):
 ###################################################################################################
 #
 #    Main process to load data into the database. NCAA statistics from 2008-2010 are 
-#    loaded. NBA statistics from 1950 to 2018 are subsequently inserted. 
+#    loaded. NBA statistics from 2000 to 2017 are subsequently inserted. 
 def main():
     # Creating schema
     print("="*50)
