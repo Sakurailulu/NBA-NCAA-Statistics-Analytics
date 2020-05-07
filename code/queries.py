@@ -2,7 +2,7 @@
 queries.py contain functionalities
 """
 
-#NACC PLAYER LOOKUP
+#NCAA PLAYER LOOKUP
 query="SELECT * From ncaa_players,nba_players WHERE ncaa_players.name LIKE concat('%', nba.player.name, '%')"
 query="SELECT * FROM ncaa_players WHERE ncaa_players.name=%s"
 
