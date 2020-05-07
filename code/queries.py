@@ -16,25 +16,25 @@ query="SELECT * FROM nba_players WHERE nba_players.name=%s"
 #Average height and height range
 query=" SELECT AVG(height),MAX(height),MIN(height) from ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s GROUP BY ncaa_stats.year" % year
 #top 10 players with highest # of fg, three pointers, free throws, rebound, assists, etc
-query="SELECT player_name FROM ncaa_stats ORDER BY fg_attempts DESC LIMIT 10"
-query="SELECTplayer_name FROM ncaa_stats ORDER BY tp_attempts DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY games_played DESC LIMIT 10"
-query="SELECTplayer_name FROM ncaa_stats ORDER BY three_pointers DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY rebounds DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY assists DESC LIMIT 10"
-query="SELECTplayer_name FROM ncaa_stats ORDER BY  blocks DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY  steals DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY pts DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY turnovers DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY fg_attempts DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY tp_attempts DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY games_played DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY three_pointers DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY rebounds DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY assists DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY  blocks DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY  steals DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY pts DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY turnovers DESC LIMIT 10"
 
 #Top 10 players with highest % of attribute
-query="SELECT player_name FROM ncaa_stats ORDER BY fg_percentage DESC LIMIT 10"
-query="SELECTplayer_name FROM ncaa_stats ORDER BY tp_percentage DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY rb_percentage DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY ass_percentage DESC LIMIT 10"
-query="SELECTplayer_name FROM ncaa_stats ORDER BY st_percentage DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY bl_percentage DESC LIMIT 10"
-query="SELECT player_name FROM ncaa_stats ORDER BY pts_pergame DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY fg_percentage DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY tp_percentage DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY rb_percentage DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY ass_percentage DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY st_percentage DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY bl_percentage DESC LIMIT 10"
+query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY pts_pergame DESC LIMIT 10"
 
 
 
