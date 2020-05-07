@@ -44,7 +44,7 @@ def processNCAA(infile, player_query, stats_query, y):
             # Insert statement for ncaa_stats table.
             cursor.execute(
                 stats_query,
-                dict( id=row[4], school=row[3], yr=y, games=row[9], fg=row[10], fg_a=row[11],
+                dict( id=row[4], school=row[0], yr=y, games=row[9], fg=row[10], fg_a=row[11],
                       fg_p=row[12], tp=row[13], tp_a=row[14], tp_p=row[15], rb=row[19],
                       rb_pg=row[20],ass=row[21], ass_pg=row[22], bl=row[23], bl_pg=row[24],
                       st=row[25], st_pg=row[26], pts=row[27], pts_pg=row[28], turnovers=row[29]
