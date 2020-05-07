@@ -15,18 +15,20 @@ def ncaa_player_lookup(name):
     query="SELECT * FROM ncaa_stats,ncaa_players WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name ILIKE concat('%', %s, '%')"
     cursor.execute(query,(name))
     records=cursor.fetchall()
+    resultofSearching=[]
     if(len(records))==0:
-        resultofSearching="Can not find this player in the datasets"
+        resultofSearching.append("Can not find this player in the datasets")
     else:
-        resultofSearching=records
+        resultofSearching.append(records)
     ret.append(resultofSearching)
     query="SELECT * From ncaa_players,ncaa_stats,nba_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE concat('%', nba_players.name, '%') AND ncaa_players.name ILIKE concat('%', %s, '%')"
     cursor.execute(query,(name))
     records = cursor.fetchall()
+    resultofEnteringNBA=[]
     if len(records)==0: 
-        resultofEnteringNBA="This player was not on the nba team any time between 2000 and 2017" 
+        resultofEnteringNBA.append("This player was not on the nba team any time between 2000 and 2017") 
     else:
-        resultofEnteringNBA=records
+        resultofEnteringNBA.append(records)
     ret.append(resultofEnteringNBA)
     return ret
         
@@ -38,26 +40,40 @@ def nba_player_lookup(name):
     query="SELECT * FROM nba_stats WHERE nba_stats.player_name ILIKE concat('%', %s, '%')"
     cursor.execute(query,(name))
     records=cursor.fetchall()
+    resultofSearching=[]
     if(len(records))==0:
-        resultofSearching="Can not find this player in the datasets"
+        resultofSearching.append("Can not find this player in the datasets")
     else:
-        resultofSearching=records
+        resultofSearching.append(records)
     ret.append(resultofSearching)
     query="SELECT * From nba_players,ncaa_players,ncaa_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE concat('%', nba_players.name, '%') AND nba_players.name ILIKE concat('%', %s, '%')"
     cursor.execute(query,(name))
     records = cursor.fetchall()
+    resultofWasInNCAA=[]
     if len(records)==0: 
-        resultofEnteringNBA="This player was not on the nba team any time between 2000 and 2017" 
+        resultofWasInNCAA.append("This player was not on the nba team any time between 2000 and 2017" )
     else:
-        resultofEnteringNBA=records
-    ret.append(resultofEnteringNBA)
+        resultofWasInNCAA.append(records)
+    ret.append(resultofWasInNCAA)
     return ret
 
 
 
 #ANNUAL NCAA REVIEW
 #Average height and height range
-query=" SELECT AVG(height),MAX(height),MIN(height) from ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s GROUP BY ncaa_stats.year" % year
+def annual_ncaa_review(year):
+    ret=[]
+    query=" SELECT AVG(height),MAX(height),MIN(height) from ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s GROUP BY ncaa_stats.year"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofHeight=[]
+    if len(records)==0:
+        resultofHeight.append("The year asked is not in database usage[2000-2017]")
+    else:
+        resultofHeight.append(records)
+    ret.append(resultofHeight)
+    return ret
+    
 #top 10 players with highest # of fg, three pointers, free throws, rebound, assists, etc
 query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY fg_attempts DESC LIMIT 10"
 query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY tp_attempts DESC LIMIT 10"
