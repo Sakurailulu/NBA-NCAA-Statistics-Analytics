@@ -12,8 +12,8 @@ cursor = conn.cursor()
 #NCAA PLAYER LOOKUP
 def ncaa_player_lookup(name):
     ret=[]
-    query="SELECT * FROM ncaa_stats,ncaa_players WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name ILIKE concat('%', %s, '%')"
-    cursor.execute(query,(name))
+    query="SELECT * FROM ncaa_stats,ncaa_players WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name='%s'" %name
+    cursor.execute(query)
     records=cursor.fetchall()
     resultofSearching=[]
     if(len(records))==0:
@@ -21,8 +21,8 @@ def ncaa_player_lookup(name):
     else:
         resultofSearching.append(records)
     ret.append(resultofSearching)
-    query="SELECT * From ncaa_players,ncaa_stats,nba_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE concat('%', nba_players.name, '%') AND ncaa_players.name ILIKE concat('%', %s, '%')"
-    cursor.execute(query,(name))
+    query="SELECT * From ncaa_players,ncaa_stats,nba_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE  nba_stats.player_name AND ncaa_players.name ILIKE '%s'"%name
+    cursor.execute(query)
     records = cursor.fetchall()
     resultofEnteringNBA=[]
     if len(records)==0: 
@@ -37,8 +37,8 @@ def ncaa_player_lookup(name):
 #NBA PLAYER LOOKUP
 def nba_player_lookup(name):
     ret=[]
-    query="SELECT * FROM nba_stats WHERE nba_stats.player_name ILIKE concat('%', %s, '%')"
-    cursor.execute(query,(name))
+    query="SELECT *FROM nba_stats WHERE nba_stats.player_name='%s'" % name
+    cursor.execute(query)
     records=cursor.fetchall()
     resultofSearching=[]
     if(len(records))==0:
@@ -46,8 +46,8 @@ def nba_player_lookup(name):
     else:
         resultofSearching.append(records)
     ret.append(resultofSearching)
-    query="SELECT * From nba_players,ncaa_players,ncaa_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE concat('%', nba_players.name, '%') AND nba_players.name ILIKE concat('%', %s, '%')"
-    cursor.execute(query,(name))
+    query="SELECT * From nba_players,ncaa_players,ncaa_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE  nba_players.name AND nba_players.name ILIKE '%s' " %name
+    cursor.execute(query)
     records = cursor.fetchall()
     resultofWasInNCAA=[]
     if len(records)==0: 
@@ -198,7 +198,7 @@ query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa
 
 #ANNUAL NBA REVIEW
 #Average height and height range
-query=" SELECT AVG(height),MAX(height),MIN(height)from nba_stats,nba_players WHERE nba_stats.player_name=nba_players.name AND nba_stats.year=%s GROUP BY ncaa_stats.year" % year
+query=" SELECT AVG(height),MAX(height),MIN(height)from nba_stats,nba_players WHERE nba_stats.player_name=nba_players.name AND nba_stats.year=%s GROUP BY ncaa_stats.year" 
 
 #top 10 players with highest # of fg, three pointers, free throws, rebound, assists, etc
 query="SELECT player_name FROM nba_stats ORDER BY fg_attempts DESC LIMIT 10"
@@ -217,3 +217,7 @@ query="SELECT player_name FROM nba_stats ORDER BY turnover_percentage DESC LIMIT
 
 
 query="SELECT college,COUNT(college) AS frequency FROM nba_players GROUP BY college ORDER BY COUNT(college)  DESC LIMIT 10"
+if __name__=="__main__":
+    print(nba_player_lookup('Charles Barkley'))
+    print(ncaa_player_lookup('Charles Barkley'))
+    
