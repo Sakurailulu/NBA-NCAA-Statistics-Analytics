@@ -56,3 +56,6 @@ query="SELECT player_name FROM nba_stats ORDER BY ass_percentage DESC LIMIT 10"
 query="SELECTplayer_name FROM nba_stats ORDER BY st_percentage DESC LIMIT 10"
 query="SELECT player_name FROM nba_stats ORDER BY bl_percentage DESC LIMIT 10"
 query="SELECT player_name FROM nba_stats ORDER BY turnover_percentage DESC LIMIT 10"
+
+
+query="SELECT college,COUNT(college) AS frequency FROM nba_players GROUP BY college ORDER BY COUNT(college)  DESC LIMIT 10"
