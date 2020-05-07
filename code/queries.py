@@ -1,15 +1,58 @@
 """
 queries.py contain functionalities
 """
+import psycopg2
+import psycopg2.extras
+
+conn_str = "host='localhost' dbname='dbms_final_project' user='dbms_project_user'\
+             password='dbms_password'"
+conn = psycopg2.connect(conn_str,cursor_factory=psycopg2.extras.DictCursor)
+cursor = conn.cursor()
 
 #NCAA PLAYER LOOKUP
-query="SELECT * From ncaa_players,nba_players WHERE ncaa_players.name LIKE concat('%', nba.player.name, '%')"
-query="SELECT * FROM ncaa_players WHERE ncaa_players.name=%s"
+def ncaa_player_lookup(name):
+    ret=[]
+    query="SELECT * FROM ncaa_stats,ncaa_players WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name ILIKE concat('%', %s, '%')"
+    cursor.execute(query,(name))
+    records=cursor.fetchall()
+    if(len(records))==0:
+        resultofSearching="Can not find this player in the datasets"
+    else:
+        resultofSearching=records
+    ret.append(resultofSearching)
+    query="SELECT * From ncaa_players,ncaa_stats,nba_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE concat('%', nba_players.name, '%') AND ncaa_players.name ILIKE concat('%', %s, '%')"
+    cursor.execute(query,(name))
+    records = cursor.fetchall()
+    if len(records)==0: 
+        resultofEnteringNBA="This player was not on the nba team any time between 2000 and 2017" 
+    else:
+        resultofEnteringNBA=records
+    ret.append(resultofEnteringNBA)
+    return ret
+        
 
 
 #NBA PLAYER LOOKUP
-query="SELECT * From ncaa_players,nba_players WHERE ncaa_players.name LIKE concat('%', nba.player.name, '%')"
-query="SELECT * FROM nba_players WHERE nba_players.name=%s"
+def nba_player_lookup(name):
+    ret=[]
+    query="SELECT * FROM nba_stats WHERE nba_stats.player_name ILIKE concat('%', %s, '%')"
+    cursor.execute(query,(name))
+    records=cursor.fetchall()
+    if(len(records))==0:
+        resultofSearching="Can not find this player in the datasets"
+    else:
+        resultofSearching=records
+    ret.append(resultofSearching)
+    query="SELECT * From nba_players,ncaa_players,ncaa_stats WHERE ncaa_players.id=ncaa_stats.player_id AND ncaa_players.name LIKE concat('%', nba_players.name, '%') AND nba_players.name ILIKE concat('%', %s, '%')"
+    cursor.execute(query,(name))
+    records = cursor.fetchall()
+    if len(records)==0: 
+        resultofEnteringNBA="This player was not on the nba team any time between 2000 and 2017" 
+    else:
+        resultofEnteringNBA=records
+    ret.append(resultofEnteringNBA)
+    return ret
+
 
 
 #ANNUAL NCAA REVIEW
