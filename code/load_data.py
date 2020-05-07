@@ -11,7 +11,7 @@ cursor = conn.cursor()
 
 # Preprocessing of csv file to replace all dashes - with zeroes for easier inserts
 def replaceDashesWithZeroes(infile, outfile):
-    with open(infile, 'r') as inf, open(outfile, 'w') as outf:
+    with open(infile, 'r') as inf, open(outfile, 'w',newline='\n', encoding='utf-8') as outf:
         reader = csv.reader(inf, delimiter=',')
         writer = csv.writer(outf)
 
