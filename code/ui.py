@@ -13,7 +13,8 @@ def search_ncaa_players():
 if __name__ == '__main__':
 	window = tk.Tk()
 	window.title('Database System Project - Basketball')
-	window.geometry('800x500')
+	window.geometry('600x450')
+	window.resizable(width=False, height=False)
 	image_file = [tk.PhotoImage(file='dear-basketball.gif', format='gif -index %i' %(i)) for i in range(9)]
 	def update(ind):
 		if ind == 9:
