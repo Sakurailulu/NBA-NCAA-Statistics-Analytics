@@ -50,7 +50,7 @@ query="SELECT player_name FROM nba_stats ORDER BY games_played DESC LIMIT 10"
 query="SELECT player_name FROM nba_stats ORDER BY three_pointers DESC LIMIT 10"
 #Top 10 players with highest % of attribute
 query="SELECT player_name FROM nba_stats ORDER BY fg_percentage DESC LIMIT 10"
-query="SELECTplayer_name FROM nba_stats ORDER BY tp_percentage DESC LIMIT 10"
+query="SELECT player_name FROM nba_stats ORDER BY tp_percentage DESC LIMIT 10"
 query="SELECT player_name FROM nba_stats ORDER BY rb_percentage DESC LIMIT 10"
 query="SELECT player_name FROM nba_stats ORDER BY ass_percentage DESC LIMIT 10"
 query="SELECT player_name FROM nba_stats ORDER BY st_percentage DESC LIMIT 10"
