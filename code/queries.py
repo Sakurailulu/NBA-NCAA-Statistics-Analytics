@@ -61,30 +61,129 @@ def nba_player_lookup(name):
 
 #ANNUAL NCAA REVIEW
 #Average height and height range
-def annual_ncaa_review(year):
-    ret=[]
+def annual_ncaa_height(year):
+
     query=" SELECT AVG(height),MAX(height),MIN(height) from ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s GROUP BY ncaa_stats.year"
     cursor.execut(query,(year))
     records=cursor.fetchall()
     resultofHeight=[]
     if len(records)==0:
-        resultofHeight.append("The year asked is not in database usage[2000-2017]")
+        resultofHeight.append("The year asked is not in database usage[2008-2010]")  
     else:
         resultofHeight.append(records)
-    ret.append(resultofHeight)
-    return ret
-    
+    return resultofHeight
 #top 10 players with highest # of fg, three pointers, free throws, rebound, assists, etc
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY fg_attempts DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY tp_attempts DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY games_played DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY three_pointers DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY rebounds DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY assists DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY  blocks DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY  steals DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY pts DESC LIMIT 10"
-query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY turnovers DESC LIMIT 10"
+def annual_ncaa_top10_fg_attempt(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY fg_attempts DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching    
+
+def annual_ncaa_top10_tp_attempt(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY tp_attempts DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching  
+ 
+def annual_ncaa_top10_rebound(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY rebounds DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching      
+
+def annual_ncaa_top10_games_played(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY games_played DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching 
+
+def annual_ncaa_top10_three_pointers(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY three_pointers DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching 
+
+def annual_ncaa_top10_assists(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY assists DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching  
+
+def annual_ncaa_top10_blocks(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY blocks DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching 
+
+def annual_ncaa_top10_steals(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY steals DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching  
+
+def annual_ncaa_top10_pts(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY pts DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching
+
+def annual_ncaa_top10_turnovers(year):
+    query="SELECT name FROM ncaa_stats,ncaa_players WHERE ncaa_stats.player_id=ncaa_players.id AND ncaa_stats.year=%s ORDER BY turnovers DESC LIMIT 10"
+    cursor.execut(query,(year))
+    records=cursor.fetchall()
+    resultofSearching=[]
+    if len(records)==0:
+        resultofSearching.append("The year asked is not in database usage[2008-2010]")  
+    else:
+        resultofSearching.append(records)
+    return resultofSearching
+
+
 
 #Top 10 players with highest % of attribute
 query="SELECT name FROM ncaa_stats,ncaa_players WHERE  ncaa_stats.player_id=ncaa_players.id ORDER BY fg_percentage DESC LIMIT 10"
